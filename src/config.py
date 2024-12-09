@@ -19,7 +19,7 @@ class Config(BaseSettings):
     def check_priority(cls, v: int) -> int:
         if v >= 1:
             return v
-        raise ValueError("weather command priority must greater than 1")
+        raise ValueError("command priority must greater than 1")
 
 
 global_config = get_driver().config

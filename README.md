@@ -1,4 +1,9 @@
-# test
+# Gomocup Bot
+
+Gomocup Bot is a QQ bot based on Nonebot2 framework and a powerful ai.
+
+## Command
+See [Command](src/plugins/gomocup.py)
 
 ## How to start
 
@@ -10,3 +15,4 @@
 ## Documentation
 
 See [Docs](https://nonebot.dev/)
+
