@@ -3,7 +3,7 @@ from ctypes import c_int
 
 from PIL import Image
 
-from ..config import cfg as cfg
+from gomocupbot.config import cfg as cfg
 
 root = cfg.project_root
 logDir = root + r'\logs'

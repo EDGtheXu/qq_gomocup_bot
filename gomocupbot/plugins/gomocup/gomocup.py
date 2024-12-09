@@ -2,10 +2,20 @@ import re
 
 from nonebot import *
 from nonebot.adapters.onebot.v11 import Message, MessageSegment, MessageEvent
+from nonebot.plugin import PluginMetadata
 
-from ..api.chess import Chess, tempDir, Command
-from ..config import cfg
-from ..utils.util import pre_command
+from gomocupbot.plugins.gomocup.api.chess import Chess, tempDir, Command
+from gomocupbot.config import cfg
+from gomocupbot.plugins.gomocup.utils.util import pre_command
+
+__plugin_meta__ = PluginMetadata(
+    name="GomocupBot",
+    description="五子棋ai",
+    usage="用来下棋",
+    type="application",
+    config=Config,
+    extra={},
+)
 
 Gomocup = on_regex(pattern=r'^/wzq', priority=cfg.command_priority, block=cfg.command_block)
 ChessRecoder = dict()

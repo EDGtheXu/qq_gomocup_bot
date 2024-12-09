@@ -1,14 +1,22 @@
 [project]
 name = "gomocupbot"
 version = "0.1.0"
+authors = [
+  { name="Coffee", email="448537509@qq.com" },
+]
 description = "a bot for gomocup"
 readme = "README.md"
 requires-python = ">=3.9, <4.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+]
 
 [tool.nonebot]
 adapters = [
     { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11" }
 ]
 plugins = []
-plugin_dirs = ["src/plugins"]
-builtin_plugins = ["echo"]
+plugin_dirs = ["gomocupbot/plugins"]
+builtin_plugins = []
