@@ -4,8 +4,8 @@ from nonebot import *
 from nonebot.adapters.onebot.v11 import Message, MessageSegment, MessageEvent
 
 from ..api.chess import Chess, tempDir, Command
-from ..utils.util import pre_command
 from ..config import cfg
+from ..utils.util import pre_command
 
 Gomocup = on_regex(pattern=r'^/wzq', priority=cfg.command_priority, block=cfg.command_block)
 ChessRecoder = dict()
@@ -78,8 +78,8 @@ async def player_move(chess: Chess, args: []):
     p = chess.turnMove()
     chess.record.append(p)
     chess.saveImg()
-
-    await Gomocup.send("{0},{1}".format(p[0] + 1, p[1] + 1) + Message(MessageSegment.image(tempDir)))
+    next = chess.get_next()
+    await Gomocup.send("{0},{1} -> {2}".format(p[0] + 1, p[1] + 1, next) + Message(MessageSegment.image(tempDir)))
     if chess.check_win():
         await Gomocup.send(message="你输了")
         chess.start = False
@@ -95,7 +95,8 @@ async def bot_move(chess: Chess, args: []):
     p = chess.turnMove()
     chess.record.append(p)
     chess.saveImg()
-    await Gomocup.send("{0},{1}".format(p[0] + 1, p[1] + 1) + Message(MessageSegment.image(tempDir)))
+    next = chess.get_next()
+    await Gomocup.send("{0},{1} -> {2}".format(p[0] + 1, p[1] + 1, next) + Message(MessageSegment.image(tempDir)))
     if chess.check_win():
         await Gomocup.send(message="你输了")
         chess.start = False
@@ -154,7 +155,8 @@ async def load(chess: Chess, args: []):
 
     chess.saveImg()
     chess.start = True
-    await Gomocup.send("棋谱加载成功\n" + Message(MessageSegment.image(tempDir)))
+    next = chess.get_next()
+    await Gomocup.send("棋谱加载成功 -> {0}\n".format(next) + Message(MessageSegment.image(tempDir)))
     return
 
 

@@ -4,11 +4,9 @@ from pydantic import field_validator
 
 
 class Config(BaseSettings):
-    # owner_id: int=448537509
-    # bor_id: int=3452098663
 
-    owner_id: int = 3452098663
-    bor_id: int = 448537509
+    owner_id: int
+    bot_id: int
 
     command_priority: int = 1
     command_block : bool = False

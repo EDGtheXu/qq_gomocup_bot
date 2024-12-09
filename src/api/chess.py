@@ -8,7 +8,12 @@ from ..config import cfg as cfg
 root = cfg.project_root
 logDir = root + r'\logs'
 imgLib = root + r'\imgs'
+boardDir = imgLib + r"\board.png"
 tempDir = imgLib + r"\temp.png"
+blackDir = imgLib + r"\black.png"
+whiteDir = imgLib + r"\white.png"
+
+
 lib = ctypes.CDLL(root + r'\lib\bot.so', winmode=0)
 offsetX = -3
 offsetY = -3
@@ -21,6 +26,12 @@ class Chess:
         self.outDir = logDir + token + '.txt'
         self.recordDir = logDir + token + '.save.txt'
         self.token = token
+
+    def get_next(self)->str:
+        if len(self.record) % 2 == 0:
+            return  '黑'
+        else:
+            return  '白'
 
     def check_win(self) -> bool:
         board = [[-1 for _ in range(15)] for _ in range(15)]
@@ -65,9 +76,9 @@ class Chess:
         return [res >> 5, res & 31]
 
     def saveImg(self):
-        img = Image.open(imgLib + r"\board.png")
-        b = Image.open(imgLib + r"\black.png")
-        w = Image.open(imgLib + r"\white.png")
+        img = Image.open(boardDir)
+        b = Image.open(blackDir)
+        w = Image.open(whiteDir)
         t = 0
         for i in self.record:
             t += 1
