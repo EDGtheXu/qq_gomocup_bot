@@ -58,7 +58,8 @@ coverage.xml
 pytestdebug.log
 
 test.py
-src/plugins/log/*
+logs/*
+temp.png
 # Translations
 *.mo
 *.pot
